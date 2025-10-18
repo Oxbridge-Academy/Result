@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oxbridge Academy - Results Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a4b8c;
+            --secondary: #e9ecef;
+            --accent: #ffc107;
+            --success: #28a745;
+            --danger: #dc3545;
+            --text: #333;
+            --light: #f8f9fa;
+            --oxbridge-green: #006400;
+            --oxbridge-dark-green: #004d00;
+            --oxbridge-gold: #d4af37;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-bottom: 40px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--oxbridge-dark-green), var(--oxbridge-green));
+            color: white;
+            /* padding: 20px 0; */
+            text-align: center;
+            border-bottom: 5px solid var(--oxbridge-gold);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 50px;
+            margin-bottom: 15px;
+        }
+        
+        .logo {
+            width: 200px;
+            height: 190px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            border: 3px solid var(--oxbridge-gold);
+            overflow: hidden;
+        }
+        .lohoimg{
+            width: 210px;
+            height: 190px;
+        }
+        
+       
+        
+        .header-text {
+            text-align: center;
+        }
+        
+        .header-text h1 {
+            font-size: 2.5rem;
+            font-style: italic;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header-text p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+        
+        .class-selection {
+            background-color: white;
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--oxbridge-green);
+        }
+        
+        .class-selection h2 {
+            color: var(--oxbridge-green);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .class-selection h2 i {
+            color: var(--oxbridge-gold);
+        }
+        
+        .class-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .class-option {
+            background-color: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .class-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-color: var(--oxbridge-green);
+        }
+        
+        .class-option.active {
+            background-color: var(--oxbridge-green);
+            color: white;
+            border-color: var(--oxbridge-gold);
+        }
+        
+        .class-option h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .class-option p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .exam-dropdown-section {
+            background-color: white;
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--oxbridge-gold);
+        }
+        
+        .exam-dropdown-section h2 {
+            color: var(--oxbridge-green);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .exam-dropdown-section h2 i {
+            color: var(--oxbridge-gold);
+        }
+        
+        .dropdown-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .dropdown-header {
+            background-color: var(--light);
+            padding: 15px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid var(--secondary);
+            transition: all 0.3s;
+        }
+        
+        .dropdown-header:hover {
+            border-color: var(--oxbridge-green);
+        }
+        
+        .dropdown-header.active {
+            border-color: var(--oxbridge-green);
+            box-shadow: 0 0 0 3px rgba(0, 100, 0, 0.2);
+        }
+        
+        .dropdown-header span {
+            font-weight: 600;
+            color: var(--oxbridge-green);
+        }
+        
+        .dropdown-arrow {
+            transition: transform 0.3s;
+        }
+        
+        .dropdown-arrow.rotated {
+            transform: rotate(180deg);
+        }
+        
+        .dropdown-list {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: white;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            z-index: 10;
+        }
+        
+        .dropdown-list.active {
+            max-height: 300px;
+            border: 2px solid var(--oxbridge-green);
+            border-top: none;
+        }
+        
+        .dropdown-item {
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-bottom: 1px solid var(--secondary);
+        }
+        
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-item:hover {
+            background-color: var(--light);
+        }
+        
+        .dropdown-item.active {
+            background-color: var(--oxbridge-green);
+            color: white;
+        }
+        
+        .input-section {
+            background-color: white;
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            display: none;
+        }
+        
+        .input-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .input-section h2 {
+            color: var(--oxbridge-green);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .search-options {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .search-option {
+            padding: 10px 20px;
+            background-color: var(--light);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            border: 2px solid transparent;
+        }
+        
+        .search-option.active {
+            background-color: var(--oxbridge-green);
+            color: white;
+        }
+        
+        .roll-input {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: 25px;
+        }
+        
+        .input-group {
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--oxbridge-green);
+            text-align: left;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid var(--secondary);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .input-group input:focus {
+            border-color: var(--oxbridge-green);
+            box-shadow: 0 0 0 3px rgba(0, 100, 0, 0.2);
+            outline: none;
+        }
+        
+        .btn {
+            padding: 14px 30px;
+            background: linear-gradient(135deg, var(--oxbridge-green), var(--oxbridge-dark-green));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, var(--oxbridge-dark-green), var(--oxbridge-green));
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-check-again {
+            background: linear-gradient(135deg, #6c757d, #5a6268);
+        }
+        
+        .btn-check-again:hover {
+            background: linear-gradient(135deg, #5a6268, #6c757d);
+        }
+        
+        .result-section {
+            background-color: white;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            display: none;
+        }
+        
+        .result-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .result-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        .result-header h2 {
+            color: var(--oxbridge-green);
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .student-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .info-card {
+            background-color: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--oxbridge-green);
+        }
+        
+        .info-card h3 {
+            color: var(--oxbridge-green);
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .marks-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 16px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .marks-table thead tr {
+            background-color: var(--oxbridge-green);
+            color: white;
+            text-align: left;
+        }
+        
+        .marks-table th,
+        .marks-table td {
+            padding: 15px 20px;
+        }
+        
+        .marks-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+        
+        .marks-table tbody tr:nth-of-type(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .marks-table tbody tr:last-of-type {
+            border-bottom: 2px solid var(--oxbridge-green);
+        }
+        
+        .marks-table tbody tr:hover {
+            background-color: #e9f7fe;
+        }
+        
+        .grade-pass {
+            color: var(--success);
+            font-weight: 600;
+        }
+        
+        .grade-fail {
+            color: var(--danger);
+            font-weight: 600;
+        }
+        
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .summary-card {
+            background: linear-gradient(135deg, var(--oxbridge-green), var(--oxbridge-dark-green));
+            color: white;
+            padding: 25px 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .summary-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .summary-card h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+        
+        .summary-card .value {
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .summary-card.percentage {
+            background: linear-gradient(135deg, var(--success), #1e7e34);
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #6c757d;
+            font-size: 14px;
+            border-top: 1px solid var(--secondary);
+        }
+        
+        .watermark {
+            position: fixed;
+            transform: translate(20% , 20%);
+            opacity: 0.2;
+            font-size: 100px;
+            color: var(--oxbridge-green);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .loading-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: var(--oxbridge-green);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .error-message {
+            color: var(--danger);
+            background-color: #f8d7da;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .header-text h1 {
+                font-size: 1.8rem;
+            }
+            
+            .logo {
+                width: 100px;
+                height: 100px;
+                margin-bottom: -30px;
+            }
+            .lohoimg{
+                width: 100px;
+                height: 100px;
+            }
+            .class-selection, .input-section, .result-section {
+                padding: 20px;
+                margin: 20px auto;
+            }
+            
+            .student-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .summary-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .marks-table {
+                font-size: 14px;
+                
+            }
+            
+            .marks-table th,
+            .marks-table td {
+                padding: 7px 9px;
+                
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-text h1 {
+                font-size: 1.5rem;
+            }
+            
+            .header-text p {
+                font-size: 1rem;
+            }
+            
+            .class-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-options {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="watermark"><img src="academy.jpg" alt="" class="water"></div>
+    
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo">
+                   <img src="academy.jpg" alt="" class="lohoimg">
+                </div>
+                <div class="header-text">
+                    <h1>Oxbridge Academy</h1>
+                    <p>Results Portal - Check Your Examination Results</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="class-selection">
+            <h2><i class="fas fa-graduation-cap"></i> Select Class</h2>
+            <p>Choose your class to check results</p>
+            
+            <div class="class-options">
+                <div class="class-option active" data-class="ix-x">
+                    <h3>Class IX & X</h3>
+                    <p>All Test Results</p>
+                </div>
+                <div class="class-option" data-class="xi-xii">
+                    <h3>Class XI & XII</h3>
+                    <p>Pre-Medical & Pre-Engineering</p>
+                </div>
+                <div class="class-option" data-class="computer-language">
+                    <h3>Computer & Language</h3>
+                    <p>Computer Science & Language Courses</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="exam-dropdown-section">
+            <h2><i class="fas fa-calendar-alt"></i> Select Test</h2>
+            <p>Choose the specific test you want to check results for</p>
+            
+            <div class="dropdown-container">
+                <div class="dropdown-header" id="dropdownHeader">
+                    <span>Select a Test</span>
+                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                </div>
+                <div class="dropdown-list" id="dropdownList">
+                    <!-- Dropdown items will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="input-section active" id="ix-x">
+            <h2><i class="fas fa-search"></i> Check Results - Class IX & X</h2>
+            <p>Enter your name or roll number to view your examination results</p>
+            
+            <div class="search-options">
+                <div class="search-option active" id="nameSearchOption">Search by Name</div>
+                <div class="search-option" id="rollSearchOption">Search by Roll Number</div>
+            </div>
+            
+            <div class="roll-input">
+                <div class="input-group" id="nameInputGroup">
+                    <label for="studentName">Student Name</label>
+                    <input type="text" id="studentName" placeholder="Enter your name " autocomplete="off">
+                </div>
+                
+                <div class="input-group" id="rollInputGroup" style="display: none;">
+                    <label for="rollNumber">Roll Number</label>
+                    <input type="text" id="rollNumber" placeholder="Enter your roll number" autocomplete="off">
+                </div>
+                
+                <div class="error-message" id="errorMessage"></div>
+                
+                <div class="loading" id="loadingIndicator">
+                    <div class="loading-spinner"></div>
+                    <p>Searching for results...</p>
+                </div>
+                
+                <button class="btn" id="checkResult">
+                    <i class="fas fa-check-circle"></i> Check Result
+                </button>
+            </div>
+        </div>
+        
+        <div class="input-section" id="xi-xii">
+            <h2><i class="fas fa-search"></i> Check Results - Class XI & XII</h2>
+            <p>Enter your name or roll number to view your examination results</p>
+            
+            <div class="search-options">
+                <div class="search-option active" id="nameSearchOptionXI">Search by Name</div>
+                <div class="search-option" id="rollSearchOptionXI">Search by Roll Number</div>
+            </div>
+            
+            <div class="roll-input">
+                <div class="input-group" id="nameInputGroupXI">
+                    <label for="studentNameXI">Student Name</label>
+                    <input type="text" id="studentNameXI" placeholder="Enter your name" autocomplete="off">
+                </div>
+                
+                <div class="input-group" id="rollInputGroupXI" style="display: none;">
+                    <label for="rollNumberXI">Roll Number</label>
+                    <input type="text" id="rollNumberXI" placeholder="Enter your roll number" autocomplete="off">
+                </div>
+                
+                <div class="error-message" id="errorMessageXI"></div>
+                
+                <div class="loading" id="loadingIndicatorXI">
+                    <div class="loading-spinner"></div>
+                    <p>Searching for results...</p>
+                </div>
+                
+                <button class="btn" id="checkResultXI">
+                    <i class="fas fa-check-circle"></i> Check Result
+                </button>
+            </div>
+        </div>
+        
+        <div class="input-section" id="computer-language">
+            <h2><i class="fas fa-search"></i> Check Results - Computer & Language</h2>
+            <p>Enter your name or roll number to view your examination results</p>
+            
+            <div class="search-options">
+                <div class="search-option active" id="nameSearchOptionCL">Search by Name</div>
+                <div class="search-option" id="rollSearchOptionCL">Search by Roll Number</div>
+            </div>
+            
+            <div class="roll-input">
+                <div class="input-group" id="nameInputGroupCL">
+                    <label for="studentNameCL">Student Name</label>
+                    <input type="text" id="studentNameCL" placeholder="Enter your name" autocomplete="off">
+                </div>
+                
+                <div class="input-group" id="rollInputGroupCL" style="display: none;">
+                    <label for="rollNumberCL">Roll Number</label>
+                    <input type="text" id="rollNumberCL" placeholder="Enter your roll number" autocomplete="off">
+                </div>
+                
+                <div class="error-message" id="errorMessageCL"></div>
+                
+                <div class="loading" id="loadingIndicatorCL">
+                    <div class="loading-spinner"></div>
+                    <p>Searching for results...</p>
+                </div>
+                
+                <button class="btn" id="checkResultCL">
+                    <i class="fas fa-check-circle"></i> Check Result
+                </button>
+            </div>
+        </div>
+        
+        <div class="result-section" id="resultSection">
+            <div class="result-header">
+                <h2>STATEMENT OF MARKS</h2>
+                <p>OXBRIDGE ACADEMY - <span id="examTitle">MONTHLY TEST 02, 2025</span></p>
+            </div>
+            
+            <div class="student-info">
+                <div class="info-card">
+                    <h3>Student Information</h3>
+                    <p><strong>Name:</strong> <span id="studentNameResult">-</span></p>
+                    <p><strong>Roll No:</strong> <span id="displayRoll">-</span></p>
+                    <p><strong>Class:</strong> <span id="classInfo">-</span></p>
+                    <p><strong>Stream:</strong> <span id="streamInfo">-</span></p>
+                </div>
+                
+                <div class="info-card">
+                    <h3>Examination Details</h3>
+                    <p><strong>Exam:</strong> <span id="examName">-</span></p>
+                    <p><strong>Center:</strong> Oxbridge Academy</p>
+                    <p><strong>Academic Year:</strong> 2025-2026</p>
+                </div>
+            </div>
+            
+            <table class="marks-table">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Maximum Marks</th>
+                        <th>Marks Obtained</th>
+                        <th>Percentage</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="marksBody">
+                    <!-- Marks will be populated by JavaScript -->
+                </tbody>
+            </table>
+            
+            <div class="summary-cards">
+                <div class="summary-card">
+                    <h3>Total Marks</h3>
+                    <div class="value" id="totalMarks">-</div>
+                </div>
+                <div class="summary-card">
+                    <h3>Marks Obtained</h3>
+                    <div class="value" id="obtainedMarks">-</div>
+                </div>
+                <div class="summary-card percentage">
+                    <h3>Percentage</h3>
+                    <div class="value" id="percentage">-</div>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn btn-check-again" id="checkAgain">
+                    <i class="fas fa-redo"></i> Check Another Result
+                </button>
+                <button class="btn" id="printResult">
+                    <i class="fas fa-print"></i> Print Result
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>© 2025 Oxbridge Academy. All rights reserved.</p>
+            <p>This is an official result portal. Any discrepancy should be reported to the examination department within 7 days.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Define all test data for different classes and exams
+        const testData = {
+            "ix-x": {
+                "monthly-test-02": {
+                    name: "Monthly Test 02 - Class IX & X",
+                    data: [
+                        { sNo: 1, name: "URSHAM", eng: 78, phy: 80, chem: 79, bio: 99, math: 80, crat: 28, obtained: 444, total: 450, percentage: 99 },
+                        { sNo: 2, name: "ZAINA", eng: 80, phy: 80, chem: 71, bio: 99, math: 80, crat: 26, obtained: 436, total: 450, percentage: 97 },
+                        { sNo: 3, name: "ZOYA", eng: 75, phy: 78, chem: 73, bio: 99, math: 73, crat: 28, obtained: 426, total: 450, percentage: 95 },
+                        { sNo: 4, name: "TALHA", eng: 72, phy: 75, chem: 70, bio: 95, math: 78, crat: 25, obtained: 415, total: 450, percentage: 92 },
+                        { sNo: 5, name: "AMNA", eng: 70, phy: 72, chem: 68, bio: 92, math: 75, crat: 24, obtained: 401, total: 450, percentage: 89 }
+                    ]
+                }
+            },
+            "xi-xii": {
+                "monthly-test-02": {
+                    name: "Monthly Test 02 - Class XI & XII",
+                    data: [
+                        { rollNo: 306, name: "BUSHRA", eng: null, phy: 35, chem: 41, bio: 49, math: null, crat: 28, obtained: 153, total: 180, percentage: 85, stream: "Medical" },
+                        { rollNo: 308, name: "HUZAIFA", eng: 47, phy: 30, chem: 41, bio: 45, math: null, crat: 27, obtained: 190, total: 230, percentage: 83, stream: "Medical" },
+                        { rollNo: 265, name: "ANOUSHA AYESHA", eng: 48, phy: 42, chem: null, bio: null, math: 38, crat: 28, obtained: 156, total: 180, percentage: 87, stream: "Engineering" },
+                        { rollNo: 266, name: "WAJID PANHWAR", eng: 42, phy: 37, chem: 30, bio: null, math: 22, crat: 28, obtained: 159, total: 230, percentage: 69, stream: "Engineering" },
+                        { rollNo: 320, name: "HUSALA AKRAM", eng: 45, phy: 40, chem: 38, bio: null, math: 35, crat: 26, obtained: 184, total: 230, percentage: 80, stream: "Engineering" }
+                    ]
+                }
+            },
+            "computer-language": {
+                "monthly-test-02": {
+                    name: "Monthly Test 02 - Computer & Language",
+                    data: [
+                        { sNo: 1, name: "ALI", comp: 85, engLang: 78, urdu: 82, obtained: 245, total: 300, percentage: 82 },
+                        { sNo: 2, name: "FATIMA", comp: 90, engLang: 85, urdu: 88, obtained: 263, total: 300, percentage: 88 },
+                        { sNo: 3, name: "HASSAN", comp: 78, engLang: 72, urdu: 75, obtained: 225, total: 300, percentage: 75 },
+                        { sNo: 4, name: "AYESHA", comp: 92, engLang: 80, urdu: 85, obtained: 257, total: 300, percentage: 86 },
+                        { sNo: 5, name: "OMAR", comp: 80, engLang: 75, urdu: 78, obtained: 233, total: 300, percentage: 78 }
+                    ]
+                }
+            }
+        };
+
+        // Subject status function
+        function getSubjectStatus(marks, maxMarks) {
+            if (marks === null || marks === undefined) return { status: 'N/A', class: '' };
+            const percentage = (marks / maxMarks) * 100;
+            return percentage >= 33 ? { status: 'Pass', class: 'grade-pass' } : { status: 'Fail', class: 'grade-fail' };
+        }
+
+        // DOM elements
+        const classOptions = document.querySelectorAll('.class-option');
+        const inputSections = document.querySelectorAll('.input-section');
+        const resultSection = document.getElementById('resultSection');
+        const dropdownHeader = document.getElementById('dropdownHeader');
+        const dropdownList = document.getElementById('dropdownList');
+        const dropdownArrow = document.querySelector('.dropdown-arrow');
+        
+        // Class IX & X elements
+        const nameSearchOption = document.getElementById('nameSearchOption');
+        const rollSearchOption = document.getElementById('rollSearchOption');
+        const nameInputGroup = document.getElementById('nameInputGroup');
+        const rollInputGroup = document.getElementById('rollInputGroup');
+        const studentNameInput = document.getElementById('studentName');
+        const rollNumberInput = document.getElementById('rollNumber');
+        const checkResultBtn = document.getElementById('checkResult');
+        const errorMessage = document.getElementById('errorMessage');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        
+        // Class XI & XII elements
+        const nameSearchOptionXI = document.getElementById('nameSearchOptionXI');
+        const rollSearchOptionXI = document.getElementById('rollSearchOptionXI');
+        const nameInputGroupXI = document.getElementById('nameInputGroupXI');
+        const rollInputGroupXI = document.getElementById('rollInputGroupXI');
+        const studentNameInputXI = document.getElementById('studentNameXI');
+        const rollNumberInputXI = document.getElementById('rollNumberXI');
+        const checkResultBtnXI = document.getElementById('checkResultXI');
+        const errorMessageXI = document.getElementById('errorMessageXI');
+        const loadingIndicatorXI = document.getElementById('loadingIndicatorXI');
+        
+        // Computer & Language elements
+        const nameSearchOptionCL = document.getElementById('nameSearchOptionCL');
+        const rollSearchOptionCL = document.getElementById('rollSearchOptionCL');
+        const nameInputGroupCL = document.getElementById('nameInputGroupCL');
+        const rollInputGroupCL = document.getElementById('rollInputGroupCL');
+        const studentNameInputCL = document.getElementById('studentNameCL');
+        const rollNumberInputCL = document.getElementById('rollNumberCL');
+        const checkResultBtnCL = document.getElementById('checkResultCL');
+        const errorMessageCL = document.getElementById('errorMessageCL');
+        const loadingIndicatorCL = document.getElementById('loadingIndicatorCL');
+        
+        // Result display elements
+        const studentNameResult = document.getElementById('studentNameResult');
+        const displayRoll = document.getElementById('displayRoll');
+        const classInfo = document.getElementById('classInfo');
+        const streamInfo = document.getElementById('streamInfo');
+        const examName = document.getElementById('examName');
+        const examTitle = document.getElementById('examTitle');
+        const marksBody = document.getElementById('marksBody');
+        const totalMarks = document.getElementById('totalMarks');
+        const obtainedMarks = document.getElementById('obtainedMarks');
+        const percentage = document.getElementById('percentage');
+        const checkAgainBtn = document.getElementById('checkAgain');
+        const printResultBtn = document.getElementById('printResult');
+
+        // Current selected class and test
+        let currentClass = 'ix-x';
+        let currentTest = 'monthly-test-02';
+
+        // Initialize dropdown with tests for the current class
+        function initializeDropdown() {
+            dropdownList.innerHTML = '';
+            const tests = Object.keys(testData[currentClass]);
+            
+            tests.forEach(testKey => {
+                const test = testData[currentClass][testKey];
+                const item = document.createElement('div');
+                item.className = 'dropdown-item';
+                if (testKey === currentTest) {
+                    item.classList.add('active');
+                    dropdownHeader.querySelector('span').textContent = test.name;
+                }
+                item.textContent = test.name;
+                item.setAttribute('data-test', testKey);
+                dropdownList.appendChild(item);
+            });
+            
+            // Add event listeners to dropdown items
+            document.querySelectorAll('.dropdown-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const testKey = this.getAttribute('data-test');
+                    selectTest(testKey);
+                    closeDropdown();
+                });
+            });
+        }
+
+        // Select a test
+        function selectTest(testKey) {
+            currentTest = testKey;
+            const test = testData[currentClass][testKey];
+            dropdownHeader.querySelector('span').textContent = test.name;
+            
+            // Update active state
+            document.querySelectorAll('.dropdown-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('data-test') === testKey) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        // Open dropdown
+        function openDropdown() {
+            dropdownList.classList.add('active');
+            dropdownHeader.classList.add('active');
+            dropdownArrow.classList.add('rotated');
+        }
+
+        // Close dropdown
+        function closeDropdown() {
+            dropdownList.classList.remove('active');
+            dropdownHeader.classList.remove('active');
+            dropdownArrow.classList.remove('rotated');
+        }
+
+        // Toggle dropdown
+        dropdownHeader.addEventListener('click', function() {
+            if (dropdownList.classList.contains('active')) {
+                closeDropdown();
+            } else {
+                openDropdown();
+            }
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!dropdownHeader.contains(event.target) && !dropdownList.contains(event.target)) {
+                closeDropdown();
+            }
+        });
+
+        // Class selection
+        classOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                classOptions.forEach(opt => opt.classList.remove('active'));
+                this.classList.add('active');
+                
+                currentClass = this.getAttribute('data-class');
+                inputSections.forEach(section => {
+                    section.classList.remove('active');
+                    if (section.id === currentClass) {
+                        section.classList.add('active');
+                    }
+                });
+                
+                // Reset to first test for the selected class
+                const tests = Object.keys(testData[currentClass]);
+                currentTest = tests[0];
+                
+                // Update dropdown
+                initializeDropdown();
+                
+                // Reset all input fields
+                resetAllInputs();
+            });
+        });
+
+        // Search option toggle for Class IX & X
+        nameSearchOption.addEventListener('click', function() {
+            nameSearchOption.classList.add('active');
+            rollSearchOption.classList.remove('active');
+            nameInputGroup.style.display = 'block';
+            rollInputGroup.style.display = 'none';
+            studentNameInput.focus();
+            hideError(errorMessage);
+        });
+
+        rollSearchOption.addEventListener('click', function() {
+            rollSearchOption.classList.add('active');
+            nameSearchOption.classList.remove('active');
+            rollInputGroup.style.display = 'block';
+            nameInputGroup.style.display = 'none';
+            rollNumberInput.focus();
+            hideError(errorMessage);
+        });
+
+        // Search option toggle for Class XI & XII
+        nameSearchOptionXI.addEventListener('click', function() {
+            nameSearchOptionXI.classList.add('active');
+            rollSearchOptionXI.classList.remove('active');
+            nameInputGroupXI.style.display = 'block';
+            rollInputGroupXI.style.display = 'none';
+            studentNameInputXI.focus();
+            hideError(errorMessageXI);
+        });
+
+        rollSearchOptionXI.addEventListener('click', function() {
+            rollSearchOptionXI.classList.add('active');
+            nameSearchOptionXI.classList.remove('active');
+            rollInputGroupXI.style.display = 'block';
+            nameInputGroupXI.style.display = 'none';
+            rollNumberInputXI.focus();
+            hideError(errorMessageXI);
+        });
+
+        // Search option toggle for Computer & Language
+        nameSearchOptionCL.addEventListener('click', function() {
+            nameSearchOptionCL.classList.add('active');
+            rollSearchOptionCL.classList.remove('active');
+            nameInputGroupCL.style.display = 'block';
+            rollInputGroupCL.style.display = 'none';
+            studentNameInputCL.focus();
+            hideError(errorMessageCL);
+        });
+
+        rollSearchOptionCL.addEventListener('click', function() {
+            rollSearchOptionCL.classList.add('active');
+            nameSearchOptionCL.classList.remove('active');
+            rollInputGroupCL.style.display = 'block';
+            nameInputGroupCL.style.display = 'none';
+            rollNumberInputCL.focus();
+            hideError(errorMessageCL);
+        });
+
+        // Error message functions
+        function showError(element, message) {
+            element.textContent = message;
+            element.style.display = 'block';
+        }
+
+        function hideError(element) {
+            element.style.display = 'none';
+        }
+
+        // Loading indicator functions
+        function showLoading(element) {
+            element.style.display = 'block';
+        }
+
+        function hideLoading(element) {
+            element.style.display = 'none';
+        }
+
+        // Reset all input fields
+        function resetAllInputs() {
+            studentNameInput.value = '';
+            rollNumberInput.value = '';
+            studentNameInputXI.value = '';
+            rollNumberInputXI.value = '';
+            studentNameInputCL.value = '';
+            rollNumberInputCL.value = '';
+            
+            hideError(errorMessage);
+            hideError(errorMessageXI);
+            hideError(errorMessageCL);
+            
+            hideLoading(loadingIndicator);
+            hideLoading(loadingIndicatorXI);
+            hideLoading(loadingIndicatorCL);
+        }
+
+        // Check result function for Class IX & X
+        checkResultBtn.addEventListener('click', function() {
+            let searchValue;
+            let searchType;
+            
+            if (nameSearchOption.classList.contains('active')) {
+                searchValue = studentNameInput.value.trim().toUpperCase();
+                searchType = 'name';
+            } else {
+                searchValue = rollNumberInput.value.trim();
+                searchType = 'roll';
+            }
+            
+            if (!searchValue) {
+                showError(errorMessage, `Please enter your ${searchType === 'name' ? 'name' : 'roll number'}`);
+                return;
+            }
+            
+            showLoading(loadingIndicator);
+            hideError(errorMessage);
+            
+            setTimeout(() => {
+                const test = testData[currentClass][currentTest];
+                let student;
+                if (searchType === 'name') {
+                    student = test.data.find(s => s.name === searchValue);
+                } else {
+                    student = test.data.find(s => s.sNo === parseInt(searchValue));
+                }
+                
+                hideLoading(loadingIndicator);
+                
+                if (student) {
+                    displayResult(student, test.name, 'IX & X', 'General');
+                } else {
+                    showError(errorMessage, `${searchType === 'name' ? 'Name' : 'Roll number'} not found. Please check and try again.`);
+                }
+            }, 800);
+        });
+
+        // Check result function for Class XI & XII
+        checkResultBtnXI.addEventListener('click', function() {
+            let searchValue;
+            let searchType;
+            
+            if (nameSearchOptionXI.classList.contains('active')) {
+                searchValue = studentNameInputXI.value.trim().toUpperCase();
+                searchType = 'name';
+            } else {
+                searchValue = rollNumberInputXI.value.trim();
+                searchType = 'roll';
+            }
+            
+            if (!searchValue) {
+                showError(errorMessageXI, `Please enter your ${searchType === 'name' ? 'name' : 'roll number'}`);
+                return;
+            }
+            
+            showLoading(loadingIndicatorXI);
+            hideError(errorMessageXI);
+            
+            setTimeout(() => {
+                const test = testData[currentClass][currentTest];
+                let student;
+                if (searchType === 'name') {
+                    student = test.data.find(s => s.name === searchValue);
+                } else {
+                    student = test.data.find(s => s.rollNo === parseInt(searchValue));
+                }
+                
+                hideLoading(loadingIndicatorXI);
+                
+                if (student) {
+                    displayResult(student, test.name, 'XI & XII', student.stream);
+                } else {
+                    showError(errorMessageXI, `${searchType === 'name' ? 'Name' : 'Roll number'} not found. Please check and try again.`);
+                }
+            }, 800);
+        });
+
+        // Check result function for Computer & Language
+        checkResultBtnCL.addEventListener('click', function() {
+            let searchValue;
+            let searchType;
+            
+            if (nameSearchOptionCL.classList.contains('active')) {
+                searchValue = studentNameInputCL.value.trim().toUpperCase();
+                searchType = 'name';
+            } else {
+                searchValue = rollNumberInputCL.value.trim();
+                searchType = 'roll';
+            }
+            
+            if (!searchValue) {
+                showError(errorMessageCL, `Please enter your ${searchType === 'name' ? 'name' : 'roll number'}`);
+                return;
+            }
+            
+            showLoading(loadingIndicatorCL);
+            hideError(errorMessageCL);
+            
+            setTimeout(() => {
+                const test = testData[currentClass][currentTest];
+                let student;
+                if (searchType === 'name') {
+                    student = test.data.find(s => s.name === searchValue);
+                } else {
+                    student = test.data.find(s => s.sNo === parseInt(searchValue));
+                }
+                
+                hideLoading(loadingIndicatorCL);
+                
+                if (student) {
+                    displayResult(student, test.name, 'Computer & Language', 'Computer Science');
+                } else {
+                    showError(errorMessageCL, `${searchType === 'name' ? 'Name' : 'Roll number'} not found. Please check and try again.`);
+                }
+            }, 800);
+        });
+
+        // Display result function
+        function displayResult(student, examType, classType, stream) {
+            // Set student information
+            studentNameResult.textContent = student.name;
+            displayRoll.textContent = student.sNo || student.rollNo || '-';
+            classInfo.textContent = classType;
+            streamInfo.textContent = stream;
+            examName.textContent = examType;
+            examTitle.textContent = examType.toUpperCase();
+            
+            // Populate marks table
+            marksBody.innerHTML = '';
+            
+            let subjects = [];
+            
+            if (classType === 'IX & X') {
+                subjects = [
+                    { name: 'English', marks: student.eng, max: 80 },
+                    { name: 'Physics', marks: student.phy, max: 80 },
+                    { name: 'Chemistry', marks: student.chem, max: 80 },
+                    { name: 'Biology', marks: student.bio, max: 99 },
+                    { name: 'Mathematics', marks: student.math, max: 80 },
+                    { name: 'CR+AT', marks: student.crat, max: 28 }
+                ];
+            } else if (classType === 'XI & XII') {
+                if (stream === 'Medical') {
+                    subjects = [
+                        { name: 'English', marks: student.eng, max: 50 },
+                        { name: 'Physics', marks: student.phy, max: student.eng ? 42 : 36 },
+                        { name: 'Chemistry', marks: student.chem, max: student.eng ? 41 : 40 },
+                        { name: 'Biology', marks: student.bio, max: student.eng ? 45 : 45 },
+                        { name: 'CR+AT', marks: student.crat, max: 28 }
+                    ];
+                } else {
+                    subjects = [
+                        { name: 'English', marks: student.eng, max: 50 },
+                        { name: 'Physics', marks: student.phy, max: student.eng ? 42 : 30 },
+                        { name: 'Chemistry', marks: student.chem, max: student.eng ? 30 : 38 },
+                        { name: 'Mathematics', marks: student.math, max: student.eng ? 22 : 30 },
+                        { name: 'CR+AT', marks: student.crat, max: 28 }
+                    ];
+                }
+            } else if (classType === 'Computer & Language') {
+                subjects = [
+                    { name: 'Computer Science', marks: student.comp, max: 100 },
+                    { name: 'English Language', marks: student.engLang, max: 100 },
+                    { name: 'Urdu', marks: student.urdu, max: 100 }
+                ];
+            }
+            
+            subjects.forEach(subject => {
+                const row = document.createElement('tr');
+                let subjectPercentage = '-';
+                
+                if (subject.marks !== null && subject.marks !== undefined) {
+                    subjectPercentage = ((subject.marks / subject.max) * 100).toFixed(1) + '%';
+                }
+                
+                const statusInfo = getSubjectStatus(subject.marks, subject.max);
+                
+                row.innerHTML = `
+                    <td>${subject.name}</td>
+                    <td>${subject.max}</td>
+                    <td>${subject.marks !== null && subject.marks !== undefined ? subject.marks : '-'}</td>
+                    <td>${subjectPercentage}</td>
+                    <td class="${statusInfo.class}">${statusInfo.status}</td>
+                `;
+                
+                marksBody.appendChild(row);
+            });
+            
+            // Update summary cards
+            totalMarks.textContent = student.total;
+            obtainedMarks.textContent = student.obtained;
+            percentage.textContent = student.percentage + '%';
+            
+            // Show result section
+            resultSection.classList.add('active');
+            
+            // Scroll to result section
+            resultSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Check again function
+        checkAgainBtn.addEventListener('click', function() {
+            resultSection.classList.remove('active');
+            resetAllInputs();
+            
+            // Focus on the first input of the active section
+            const activeSection = document.querySelector('.input-section.active');
+            if (activeSection) {
+                const nameInput = activeSection.querySelector('input[type="text"]');
+                if (nameInput) {
+                    nameInput.focus();
+                }
+            }
+        });
+
+        // Print result function
+        printResultBtn.addEventListener('click', function() {
+            window.print();
+        });
+
+        // Allow Enter key to submit for all input sections
+        function setupEnterKey(inputElement, buttonElement) {
+            inputElement.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    buttonElement.click();
+                }
+            });
+        }
+
+        // Set up Enter key functionality for all search inputs
+        setupEnterKey(studentNameInput, checkResultBtn);
+        setupEnterKey(rollNumberInput, checkResultBtn);
+        setupEnterKey(studentNameInputXI, checkResultBtnXI);
+        setupEnterKey(rollNumberInputXI, checkResultBtnXI);
+        setupEnterKey(studentNameInputCL, checkResultBtnCL);
+        setupEnterKey(rollNumberInputCL, checkResultBtnCL);
+
+        // Initialize the dropdown
+        initializeDropdown();
+    </script>
+</body>
+</html>
