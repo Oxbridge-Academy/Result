@@ -17,6 +17,11 @@
             --oxbridge-green: #006400;
             --oxbridge-dark-green: #004d00;
             --oxbridge-gold: #d4af37;
+            --gradient-1: linear-gradient(135deg, #006400, #004d00);
+            --gradient-2: linear-gradient(135deg, #1a4b8c, #0d2b52);
+            --gradient-3: linear-gradient(135deg, #d4af37, #b8941f);
+            --gradient-4: linear-gradient(135deg, #28a745, #1e7e34);
+            --gradient-5: linear-gradient(135deg, #dc3545, #c82333);
         }
         
         * {
@@ -43,7 +48,6 @@
         header {
             background: linear-gradient(135deg, var(--oxbridge-dark-green), var(--oxbridge-green));
             color: white;
-            /* padding: 20px 0; */
             text-align: center;
             border-bottom: 5px solid var(--oxbridge-gold);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -57,7 +61,7 @@
             justify-content: center;
             flex-wrap: wrap;
             gap: 50px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
         
         .logo {
@@ -76,8 +80,6 @@
             width: 210px;
             height: 190px;
         }
-        
-       
         
         .header-text {
             text-align: center;
@@ -500,7 +502,7 @@
         }
         
         .summary-card {
-            background: linear-gradient(135deg, var(--oxbridge-green), var(--oxbridge-dark-green));
+            background: var(--gradient-2);
             color: white;
             padding: 25px 20px;
             border-radius: 10px;
@@ -525,7 +527,7 @@
         }
         
         .summary-card.percentage {
-            background: linear-gradient(135deg, var(--success), #1e7e34);
+            background: var(--gradient-5);
         }
         
         .action-buttons {
@@ -544,12 +546,15 @@
             border-top: 1px solid var(--secondary);
         }
         
-        .watermark {
+           .watermark {
             position: fixed;
-            transform: translate(20% , 20%);
+            transform: translate(40% , 20%);
             opacity: 0.2;
-            font-size: 100px;
-            color: var(--oxbridge-green);
+            height: 100px;
+            width: 500px;
+            
+            
+            
             pointer-events: none;
             z-index: -1;
         }
@@ -589,9 +594,8 @@
             }
             
             .logo {
-                width: 100px;
+                width: 110px;
                 height: 100px;
-                margin-bottom: -30px;
             }
             .lohoimg{
                 width: 100px;
@@ -622,25 +626,20 @@
             .marks-table {
                 font-size: 11px;
                 font-style: italic;
-                
-            }
-            .marks-table th{
-                font-size: 11px;
-                
             }
             
             .marks-table th,
             .marks-table td {
                 padding: 4px 4px;
-                
             }
+          
         }
         
         @media (max-width: 480px) {
             .header-text h1 {
                 font-size: 1.5rem;
             }
-            
+           
             .header-text p {
                 font-size: 1rem;
             }
@@ -656,7 +655,7 @@
     </style>
 </head>
 <body>
-    <div class="watermark"><img src="academy.jpg" alt="" class="water"></div>
+        <div class="watermark"><img src="academy.jpg" alt="" class="water"></div>
     
     <header>
         <div class="container">
@@ -720,7 +719,7 @@
             <div class="roll-input">
                 <div class="input-group" id="nameInputGroup">
                     <label for="studentName">Student Name</label>
-                    <input type="text" id="studentName" placeholder="Enter your name " autocomplete="off">
+                    <input type="text" id="studentName" placeholder="Enter your name" autocomplete="off">
                 </div>
                 
                 <div class="input-group" id="rollInputGroup" style="display: none;">
@@ -885,11 +884,46 @@
                 "monthly-test-02": {
                     name: "Monthly Test 02 - Class IX & X",
                     data: [
-                        { sNo: 1, name: "URSHAM", eng: 78, phy: 80, chem: 79, bio: 99, math: 80, crat: 28, obtained: 444, total: 450, percentage: 99 },
-                        { sNo: 2, name: "ZAINA", eng: 80, phy: 80, chem: 71, bio: 99, math: 80, crat: 26, obtained: 436, total: 450, percentage: 97 },
-                        { sNo: 3, name: "ZOYA", eng: 75, phy: 78, chem: 73, bio: 99, math: 73, crat: 28, obtained: 426, total: 450, percentage: 95 },
-                        { sNo: 4, name: "TALHA", eng: 72, phy: 75, chem: 70, bio: 95, math: 78, crat: 25, obtained: 415, total: 450, percentage: 92 },
-                        { sNo: 5, name: "AMNA", eng: 70, phy: 72, chem: 68, bio: 92, math: 75, crat: 24, obtained: 401, total: 450, percentage: 89 }
+                        { sNo: 229, name: "URSHAM", eng: 99.5, phy: 80, chem: 79, bio: 100, math: 80, crat: 29, obtained: 467.5, total: 470, percentage: 99 },
+                        { sNo: 237, name: "AYESHA KASHIF", eng: 80, phy: 79, chem: 80, bio: 94, math: 78, crat: 28, obtained: 439, total: 470, percentage: 93 },
+                        { sNo: 215, name: "TALHA", eng: 92, phy: 78, chem: 77, bio: 83, math: 79, crat: 28, obtained: 437, total: 470, percentage: 93 },
+                        { sNo: 212, name: "ZOYA", eng: 74, phy: 80, chem: 74, bio: 99, math: 70, crat: 28, obtained: 425, total: 470, percentage: 90 },
+                        { sNo: 209, name: "UME AYESHA", eng: 95, phy: 73, chem: 74, bio: 95, math: 58, crat: 28, obtained: 423, total: 470, percentage: 90 },
+                        { sNo: 160, name: "TAHREEM", eng: 87, phy: 56, chem: 76, bio: 99, math: 76, crat: 27, obtained: 421, total: 470, percentage: 90 },
+                        { sNo: 205, name: "JANNAT", eng: 66, phy: 79, chem: 76, bio: 86, math: 74, crat: 27, obtained: 408, total: 470, percentage: 87 },
+                        { sNo: 156, name: "AYESHA NAVEED", eng: 65, phy: 71, chem: 77, bio: 100, math: 65, crat: 28, obtained: 406, total: 470, percentage: 86 },
+                        { sNo: 231, name: "AMNA", eng: 85, phy: 78, chem: 76, bio: 90, math: 40, crat: 28, obtained: 397, total: 470, percentage: 84 },
+                        { sNo: 154, name: "AHMED", eng: 65, phy: 70, chem: 76, bio: 96, math: 60, crat: 28, obtained: 395, total: 470, percentage: 84 },
+                        { sNo: 216, name: "ANUS", eng: 74, phy: 66, chem: 77, bio: 77, math: 54, crat: 28, obtained: 376, total: 470, percentage: 80 },
+                        { sNo: 214, name: "BUSHRA", eng: 67, phy: 72, chem: 73, bio: 80, math: 54, crat: 27, obtained: 373, total: 470, percentage: 79 },
+                        { sNo: 157, name: "KHADIJA", eng: 73, phy: 59, chem: 72, bio: 96, math: 46, crat: 24, obtained: 370, total: 470, percentage: 79 },
+                        { sNo: 151, name: "ALI HAMZA", eng: 60, phy: 53, chem: 63, bio: 94, math: 60, crat: 28, obtained: 358, total: 470, percentage: 76 },
+                        { sNo: 238, name: "MUSKAN", eng: 72, phy: 61, chem: 49, bio: 80, math: 38, crat: 25, obtained: 325, total: 470, percentage: 69 },
+                        { sNo: 161, name: "UZAIR", eng: 55, phy: 64, chem: 47, bio: 89, math: 26, crat: 29, obtained: 310, total: 470, percentage: 66 },
+                        { sNo: 170, name: "SYEDA ANAMTA", eng: 69, phy: 29, chem: 71, bio: 94, math: 20, crat: 25, obtained: 308, total: 470, percentage: 66 },
+                        { sNo: 243, name: "TABBASUM", eng: 27, phy: 48, chem: 49, bio: 85, math: 50, crat: 28, obtained: 287, total: 470, percentage: 61 },
+                        { sNo: 245, name: "MUNAZZA", eng: 19, phy: 54, chem: 58, bio: 93, math: 25, crat: 24, obtained: 273, total: 470, percentage: 58 },
+                        { sNo: 220, name: "UBAIDULLAH", eng: 39, phy: 46, chem: 42, bio: 90, math: 15, crat: 25, obtained: 257, total: 470, percentage: 55 },
+                        { sNo: 247, name: "NAFASAT", eng: 50, phy: 44, chem: 37, bio: 90, math: 10, crat: 26, obtained: 257, total: 470, percentage: 55 },
+                        { sNo: 222, name: "MUNEEB", eng: 47, phy: 21, chem: 51, bio: 90, math: 10, crat: 22, obtained: 241, total: 470, percentage: 51 },
+                        { sNo: 152, name: "BASIT", eng: 23, phy: 36, chem: 30, bio: 95, math: 26, crat: 27, obtained: 237, total: 470, percentage: 50 },
+                        { sNo: 246, name: "ZAHIR", eng: 73, phy: 36, chem: 27, bio: null, math: 23, crat: 27, obtained: 186, total: 370, percentage: 50 },
+                        { sNo: 224, name: "ABU BAKAR", eng: 32, phy: 23, chem: 29, bio: 90, math: 31, crat: 23, obtained: 228, total: 470, percentage: 49 },
+                        { sNo: 166, name: "ANILA", eng: 22, phy: 25, chem: 30, bio: 80, math: 38, crat: 26, obtained: 221, total: 470, percentage: 47 },
+                        { sNo: 204, name: "KHALID", eng: 75, phy: 26, chem: 30, bio: null, math: 12, crat: 26, obtained: 169, total: 370, percentage: 46 },
+                        { sNo: 168, name: "ZOHAIB", eng: 18, phy: 5, chem: 30, bio: 49, math: 28, crat: 21, obtained: 151, total: 470, percentage: 32 },
+                        { sNo: 158, name: "HAZIQUE", eng: 17, phy: 10, chem: 25, bio: 61, math: 0, crat: 25, obtained: 138, total: 470, percentage: 29 },
+                        { sNo: 232, name: "WAHAJ", eng: 37, phy: 0, chem: 25, bio: 23, math: 20, crat: 23, obtained: 128, total: 470, percentage: 27 },
+                        { sNo: 225, name: "M.ALI", eng: 0, phy: 22, chem: 57, bio: 0, math: 12, crat: 25, obtained: 116, total: 470, percentage: 25 },
+                        { sNo: 167, name: "JALIL AFRIDI", eng: 26, phy: 14, chem: 5, bio: null, math: 13, crat: 25, obtained: 83, total: 370, percentage: 22 },
+                        { sNo: 162, name: "TAHIR", eng: 0, phy: 55, chem: 25, bio: 0, math: 0, crat: 23, obtained: 103, total: 470, percentage: 22 },
+                        { sNo: 163, name: "SHAHMIR", eng: 6, phy: 9, chem: 30, bio: null, math: 12, crat: 19, obtained: 76, total: 370, percentage: 21 },
+                        { sNo: 233, name: "ZAEEM", eng: 19, phy: 14, chem: 7, bio: 7, math: 13, crat: 21, obtained: 81, total: 470, percentage: 17 },
+                        { sNo: 250, name: "JANGRAIZ", eng: 0, phy: 54, chem: 0, bio: 0, math: 0, crat: 25, obtained: 79, total: 470, percentage: 17 },
+                        { sNo: 175, name: "RAFAY", eng: 8, phy: 13, chem: 8, bio: 5, math: 10, crat: 24, obtained: 68, total: 470, percentage: 14 },
+                        { sNo: 174, name: "FAIZAN", eng: 0, phy: 0, chem: 10, bio: 0, math: 11, crat: 23, obtained: 44, total: 470, percentage: 9 },
+                        { sNo: 226, name: "ZAIN", eng: 0, phy: 14, chem: 7, bio: 0, math: 0, crat: 23, obtained: 44, total: 470, percentage: 9 },
+                        { sNo: 241, name: "WAQAR", eng: 0, phy: 0, chem: 0, bio: 0, math: 11, crat: 21, obtained: 32, total: 470, percentage: 7 }
                     ]
                 }
             },
@@ -897,11 +931,42 @@
                 "monthly-test-02": {
                     name: "Monthly Test 02 - Class XI & XII",
                     data: [
-                        { rollNo: 306, name: "BUSHRA", eng: null, phy: 35, chem: 41, bio: 49, math: null, crat: 28, obtained: 153, total: 180, percentage: 85, stream: "Medical" },
-                        { rollNo: 308, name: "HUZAIFA", eng: 47, phy: 30, chem: 41, bio: 45, math: null, crat: 27, obtained: 190, total: 230, percentage: 83, stream: "Medical" },
-                        { rollNo: 265, name: "ANOUSHA AYESHA", eng: 48, phy: 42, chem: null, bio: null, math: 38, crat: 28, obtained: 156, total: 180, percentage: 87, stream: "Engineering" },
-                        { rollNo: 266, name: "WAJID PANHWAR", eng: 42, phy: 37, chem: 30, bio: null, math: 22, crat: 28, obtained: 159, total: 230, percentage: 69, stream: "Engineering" },
-                        { rollNo: 320, name: "HUSALA AKRAM", eng: 45, phy: 40, chem: 38, bio: null, math: 35, crat: 26, obtained: 184, total: 230, percentage: 80, stream: "Engineering" }
+                        // PE Students
+                        { rollNo: 322, name: "AREESHA", eng: null, phy: 40, chem: 37, math: 32, crat: 28, obtained: 137, total: 180, percentage: 76, stream: "Engineering" },
+                        { rollNo: 273, name: "ANSHARA NOOR", eng: 34, phy: 36, chem: null, math: 37, crat: 28, obtained: 135, total: 180, percentage: 75, stream: "Engineering" },
+                        { rollNo: 321, name: "WASEEM", eng: null, phy: 35, chem: 36, math: 31, crat: 28, obtained: 130, total: 180, percentage: 72, stream: "Engineering" },
+                        { rollNo: 290, name: "SANIA ALI", eng: null, phy: 28, chem: 36, math: null, crat: 26, obtained: 90, total: 130, percentage: 69, stream: "Engineering" },
+                        { rollNo: 266, name: "WAJID PANHWER", eng: 42, phy: 20, chem: 29, math: 40, crat: 27, obtained: 158, total: 230, percentage: 69, stream: "Engineering" },
+                        { rollNo: 320, name: "HUSALA", eng: null, phy: 30, chem: 33, math: 28, crat: 28, obtained: 119, total: 180, percentage: 66, stream: "Engineering" },
+                        { rollNo: 328, name: "EISHA", eng: 37, phy: 30, chem: 28, math: 23, crat: 27, obtained: 145, total: 230, percentage: 63, stream: "Engineering" },
+                        { rollNo: 257, name: "HYDER ALI", eng: 23, phy: 18, chem: 34, math: 25, crat: 27, obtained: 127, total: 230, percentage: 55, stream: "Engineering" },
+                        { rollNo: 294, name: "TANZEEL", eng: 29, phy: 18, chem: 23, math: 20, crat: 26, obtained: 116, total: 230, percentage: 50, stream: "Engineering" },
+                        { rollNo: 293, name: "M.USMAN", eng: 33, phy: 18, chem: 22, math: 18, crat: 24, obtained: 115, total: 230, percentage: 50, stream: "Engineering" },
+                        { rollNo: 264, name: "HOOR-UN-NISA", eng: null, phy: 22, chem: 25, math: 17, crat: 26, obtained: 90, total: 180, percentage: 50, stream: "Engineering" },
+                        { rollNo: 286, name: "HASEEB", eng: 20, phy: 21, chem: null, math: 14, crat: 23, obtained: 78, total: 180, percentage: 43, stream: "Engineering" },
+                        { rollNo: 319, name: "SUFYAN", eng: null, phy: 24, chem: 12, math: 14, crat: 27, obtained: 77, total: 180, percentage: 43, stream: "Engineering" },
+                        { rollNo: 291, name: "SHAHMEER", eng: null, phy: 15, chem: 24, math: 13, crat: 24, obtained: 76, total: 180, percentage: 42, stream: "Engineering" },
+                        { rollNo: 289, name: "EISHA", eng: null, phy: 19, chem: 27, math: 6, crat: 22, obtained: 74, total: 180, percentage: 41, stream: "Engineering" },
+                        { rollNo: 279, name: "RANA HUZAIFA", eng: 22, phy: 11, chem: 16, math: 16, crat: 26, obtained: 91, total: 230, percentage: 40, stream: "Engineering" },
+                        { rollNo: 268, name: "ATIF", eng: 19, phy: 14, chem: 13, math: 18, crat: 25, obtained: 89, total: 230, percentage: 39, stream: "Engineering" },
+                        { rollNo: 330, name: "MOEEZ", eng: 13, phy: 12, chem: 10, math: 17, crat: 26, obtained: 78, total: 230, percentage: 34, stream: "Engineering" },
+                        { rollNo: 331, name: "NOOR-UL-HUDA", eng: null, phy: 7, chem: null, math: 10, crat: 21, obtained: 38, total: 130, percentage: 29, stream: "Engineering" },
+                        // PM Students
+                        { rollNo: 306, name: "BUSHRA", eng: 43, phy: 45, chem: 44, bio: 47, crat: 28, obtained: 207, total: 230, percentage: 90, stream: "Medical" },
+                        { rollNo: 302, name: "BAHAR", eng: null, phy: 40, chem: 41, bio: 47, crat: 27, obtained: 155, total: 180, percentage: 86, stream: "Medical" },
+                        { rollNo: 307, name: "INAYA ANJUM", eng: null, phy: 39, chem: 41, bio: 47, crat: 28, obtained: 155, total: 180, percentage: 86, stream: "Medical" },
+                        { rollNo: 305, name: "RUTABA", eng: null, phy: 38, chem: 38, bio: 45, crat: 28, obtained: 149, total: 180, percentage: 83, stream: "Medical" },
+                        { rollNo: 278, name: "ZARA", eng: null, phy: 29, chem: 40, bio: 42, crat: 28, obtained: 139, total: 180, percentage: 77, stream: "Medical" },
+                        { rollNo: 323, name: "ALISHA", eng: 35, phy: 29, chem: 40, bio: 42, crat: 26, obtained: 172, total: 230, percentage: 75, stream: "Medical" },
+                        { rollNo: 285, name: "SHANZA", eng: 45, phy: 20, chem: 34, bio: 43, crat: 25, obtained: 167, total: 230, percentage: 73, stream: "Medical" },
+                        { rollNo: 316, name: "FIZA FATIMA", eng: 35, phy: 29, chem: 39, bio: 33, crat: 25, obtained: 161, total: 230, percentage: 70, stream: "Medical" },
+                        { rollNo: 312, name: "UZMA ATTUR", eng: 33, phy: 23, chem: 30, bio: 39, crat: 26, obtained: 151, total: 230, percentage: 66, stream: "Medical" },
+                        { rollNo: 327, name: "SHAHZAIB", eng: 34, phy: 34, chem: 24, bio: 27, crat: 27, obtained: 146, total: 230, percentage: 63, stream: "Medical" },
+                        { rollNo: 332, name: "TOOBA", eng: null, phy: 18, chem: 27, bio: 25, crat: 26, obtained: 96, total: 180, percentage: 53, stream: "Medical" },
+                        { rollNo: 311, name: "PARSA", eng: 23, phy: 17, chem: 16, bio: 32, crat: 26, obtained: 114, total: 230, percentage: 50, stream: "Medical" },
+                        { rollNo: 295, name: "ANEEL KUMAR", eng: 12, phy: 20, chem: 18, bio: 29, crat: 18, obtained: 97, total: 230, percentage: 42, stream: "Medical" },
+                        { rollNo: 292, name: "ASHOK KUMAR", eng: 20, phy: 19, chem: 12, bio: 18, crat: 26, obtained: 95, total: 230, percentage: 41, stream: "Medical" },
+                        { rollNo: 277, name: "SAIM", eng: 17, phy: 17, chem: 13, bio: 21, crat: 21, obtained: 89, total: 230, percentage: 39, stream: "Medical" }
                     ]
                 }
             },
@@ -909,11 +974,51 @@
                 "monthly-test-02": {
                     name: "Monthly Test 02 - Computer & Language",
                     data: [
-                        { sNo: 1, name: "ALI", comp: 85, engLang: 78, urdu: 82, obtained: 245, total: 300, percentage: 82 },
-                        { sNo: 2, name: "FATIMA", comp: 90, engLang: 85, urdu: 88, obtained: 263, total: 300, percentage: 88 },
-                        { sNo: 3, name: "HASSAN", comp: 78, engLang: 72, urdu: 75, obtained: 225, total: 300, percentage: 75 },
-                        { sNo: 4, name: "AYESHA", comp: 92, engLang: 80, urdu: 85, obtained: 257, total: 300, percentage: 86 },
-                        { sNo: 5, name: "OMAR", comp: 80, engLang: 75, urdu: 78, obtained: 233, total: 300, percentage: 78 }
+                        // Computer Students
+                        { rollNo: 618, name: "WAJID", theory: 40, viva: 19, practical: 30, obtained: 89, total: 100, percentage: 89 },
+                        { rollNo: 626, name: "ANSHARA NOOR", theory: 35, viva: 15, practical: 29, obtained: 79, total: 100, percentage: 79 },
+                        { rollNo: 637, name: "AAMNA YOUNAS", theory: 31, viva: 19, practical: 28, obtained: 78, total: 100, percentage: 78 },
+                        { rollNo: 635, name: "SAAD", theory: 32, viva: 18, practical: 28, obtained: 78, total: 100, percentage: 78 },
+                        { rollNo: 632, name: "MISHAL", theory: 25, viva: 15, practical: 23, obtained: 63, total: 100, percentage: 63 },
+                        { rollNo: 644, name: "JALIL", theory: 18, viva: 20, practical: 20, obtained: 58, total: 100, percentage: 58 },
+                        { rollNo: 621, name: "SHAHEER", theory: 30, viva: 10, practical: 18, obtained: 58, total: 100, percentage: 58 },
+                        { rollNo: 617, name: "MAAZ", theory: 17, viva: 10, practical: 30, obtained: 57, total: 100, percentage: 57 },
+                        { rollNo: 608, name: "SUMAN", theory: 22, viva: 15, practical: 15, obtained: 52, total: 100, percentage: 52 },
+                        { rollNo: 607, name: "ZAINAB", theory: 20, viva: 8, practical: 20, obtained: 48, total: 100, percentage: 48 },
+                        { rollNo: 623, name: "HASAN ABBAS", theory: 15, viva: 15, practical: 18, obtained: 48, total: 100, percentage: 48 },
+                        { rollNo: 643, name: "NOOR-UL-HUDA", theory: 18, viva: 10, practical: 15, obtained: 43, total: 100, percentage: 43 },
+                        { rollNo: 629, name: "M.TAHA", theory: 22, viva: 10, practical: 10, obtained: 42, total: 100, percentage: 42 },
+                        { rollNo: 628, name: "SHAHMIR", theory: 21, viva: 10, practical: 10, obtained: 41, total: 100, percentage: 41 },
+                        { rollNo: 645, name: "TOOBA ALAM", theory: 17, viva: 8, practical: 10, obtained: 35, total: 100, percentage: 35 },
+                        { rollNo: 606, name: "KASHAF", theory: 10, viva: 8, practical: 15, obtained: 33, total: 100, percentage: 33 },
+                        { rollNo: 610, name: "HASNAIN ARAIN", theory: 33, viva: 0, practical: 0, obtained: 33, total: 100, percentage: 33 },
+                        { rollNo: 612, name: "HASNAIN MAILK", theory: 25, viva: 0, practical: 0, obtained: 25, total: 100, percentage: 25 },
+                        { rollNo: 605, name: "MAHEEN", theory: 22, viva: 0, practical: 0, obtained: 22, total: 100, percentage: 22 },
+                        { rollNo: 633, name: "MALAHA", theory: 18, viva: 0, practical: 0, obtained: 18, total: 100, percentage: 18 },
+                        { rollNo: 611, name: "USAMA MALIK", theory: 18, viva: 0, practical: 0, obtained: 18, total: 100, percentage: 18 },
+                        { rollNo: 604, name: "M.HASSAAN", theory: 17, viva: 0, practical: 0, obtained: 17, total: 100, percentage: 17 },
+                        { rollNo: 613, name: "ZEESHAN", theory: 17, viva: 0, practical: 0, obtained: 17, total: 100, percentage: 17 },
+                        { rollNo: 620, name: "AYAN MALIK", theory: 16, viva: 0, practical: 0, obtained: 16, total: 100, percentage: 16 },
+                        { rollNo: 640, name: "SHAYAN", theory: 11, viva: 5, practical: 0, obtained: 16, total: 100, percentage: 16 },
+                        { rollNo: 634, name: "SHAHEEN", theory: 15, viva: 0, practical: 0, obtained: 15, total: 100, percentage: 15 },
+                        { rollNo: 627, name: "BHAESINGH", theory: 15, viva: 0, practical: 0, obtained: 15, total: 100, percentage: 15 },
+                        { rollNo: 601, name: "AENULLAH", theory: 11, viva: 3, practical: 0, obtained: 14, total: 100, percentage: 14 },
+                        { rollNo: 614, name: "ABDULLAH", theory: 14, viva: 0, practical: 0, obtained: 14, total: 100, percentage: 14 },
+                        { rollNo: 609, name: "ISRA NAAZ", theory: 12, viva: 0, practical: 0, obtained: 12, total: 100, percentage: 12 },
+                        // Language Students
+                        { rollNo: 511, name: "SANIA", theory: 22, obtained: 22, total: 30, percentage: 73 },
+                        { rollNo: 508, name: "WAHAJ", theory: 20, obtained: 20, total: 30, percentage: 67 },
+                        { rollNo: 504, name: "SUFIYAN", theory: 19, obtained: 19, total: 30, percentage: 63 },
+                        { rollNo: 514, name: "YUSHA", theory: 18, obtained: 18, total: 30, percentage: 60 },
+                        { rollNo: 517, name: "TANZEEL", theory: 18, obtained: 18, total: 30, percentage: 60 },
+                        { rollNo: 512, name: "QIRRAT", theory: 17, obtained: 17, total: 30, percentage: 57 },
+                        { rollNo: 513, name: "MOMIN", theory: 15, obtained: 15, total: 30, percentage: 50 },
+                        { rollNo: 515, name: "FAIZAN", theory: 14, obtained: 14, total: 30, percentage: 47 },
+                        { rollNo: 509, name: "HOOR-UN-NISA", theory: 12, obtained: 12, total: 30, percentage: 40 },
+                        { rollNo: 503, name: "KHUBAIB", theory: 9, obtained: 9, total: 30, percentage: 30 },
+                        { rollNo: 505, name: "ABDUL REHMAN", theory: 9, obtained: 9, total: 30, percentage: 30 },
+                        { rollNo: 516, name: "SHAYAN", theory: 7, obtained: 7, total: 30, percentage: 23 },
+                        { rollNo: 507, name: "KHALILULLAH", theory: 4, obtained: 4, total: 30, percentage: 13 }
                     ]
                 }
             }
@@ -1285,7 +1390,7 @@
                 if (searchType === 'name') {
                     student = test.data.find(s => s.name === searchValue);
                 } else {
-                    student = test.data.find(s => s.sNo === parseInt(searchValue));
+                    student = test.data.find(s => s.rollNo === parseInt(searchValue));
                 }
                 
                 hideLoading(loadingIndicatorCL);
@@ -1315,37 +1420,46 @@
             
             if (classType === 'IX & X') {
                 subjects = [
-                    { name: 'English', marks: student.eng, max: 80 },
+                    { name: 'English', marks: student.eng, max: 100 },
                     { name: 'Physics', marks: student.phy, max: 80 },
                     { name: 'Chemistry', marks: student.chem, max: 80 },
-                    { name: 'Biology', marks: student.bio, max: 99 },
+                    { name: 'Biology', marks: student.bio, max: 100 },
                     { name: 'Mathematics', marks: student.math, max: 80 },
-                    { name: 'CR+AT', marks: student.crat, max: 28 }
+                    { name: 'CR+AT', marks: student.crat, max: 30 }
                 ];
             } else if (classType === 'XI & XII') {
-                if (stream === 'Medical') {
+                if (stream === 'Engineering') {
                     subjects = [
                         { name: 'English', marks: student.eng, max: 50 },
-                        { name: 'Physics', marks: student.phy, max: student.eng ? 42 : 36 },
-                        { name: 'Chemistry', marks: student.chem, max: student.eng ? 41 : 40 },
-                        { name: 'Biology', marks: student.bio, max: student.eng ? 45 : 45 },
-                        { name: 'CR+AT', marks: student.crat, max: 28 }
+                        { name: 'Physics', marks: student.phy, max: 50 },
+                        { name: 'Chemistry', marks: student.chem, max: 50 },
+                        { name: 'Mathematics', marks: student.math, max: 50 },
+                        { name: 'CR+AT', marks: student.crat, max: 30 }
                     ];
-                } else {
+                } else if (stream === 'Medical') {
                     subjects = [
                         { name: 'English', marks: student.eng, max: 50 },
-                        { name: 'Physics', marks: student.phy, max: student.eng ? 42 : 30 },
-                        { name: 'Chemistry', marks: student.chem, max: student.eng ? 30 : 38 },
-                        { name: 'Mathematics', marks: student.math, max: student.eng ? 22 : 30 },
-                        { name: 'CR+AT', marks: student.crat, max: 28 }
+                        { name: 'Physics', marks: student.phy, max: 50 },
+                        { name: 'Chemistry', marks: student.chem, max: 50 },
+                        { name: 'Biology', marks: student.bio, max: 50 },
+                        { name: 'CR+AT', marks: student.crat, max: 30 }
                     ];
                 }
             } else if (classType === 'Computer & Language') {
-                subjects = [
-                    { name: 'Computer Science', marks: student.comp, max: 100 },
-                    { name: 'English Language', marks: student.engLang, max: 100 },
-                    { name: 'Urdu', marks: student.urdu, max: 100 }
-                ];
+                // Check if it's a computer student (has viva and practical) or language student
+                if (student.viva !== undefined) {
+                    // Computer student
+                    subjects = [
+                        { name: 'Theory', marks: student.theory, max: 50 },
+                        { name: 'Viva', marks: student.viva, max: 20 },
+                        { name: 'Practical', marks: student.practical, max: 30 }
+                    ];
+                } else {
+                    // Language student - only show theory
+                    subjects = [
+                        { name: 'Theory', marks: student.theory, max: 30 }
+                    ];
+                }
             }
             
             subjects.forEach(subject => {
@@ -1422,8 +1536,4 @@
         initializeDropdown();
     </script>
 </body>
-
 </html>
-
-
-
