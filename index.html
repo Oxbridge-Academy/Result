@@ -655,6 +655,40 @@
                 flex-direction: column;
             }
         }
+              .animated-title {
+    font-size: 2.5rem;
+    font-style: italic;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    height: 60px;
+    overflow: hidden;
+    position: relative;
+}
+
+.animated-title::after {
+    content: '|';
+    animation: blink 1s infinite;
+    margin-left: 2px;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+@media (max-width: 768px) {
+    .animated-title {
+        font-size: 1.8rem;
+        height: 45px;
+    }
+}
+
+@media (max-width: 480px) {
+    .animated-title {
+        font-size: 1.5rem;
+        height: 40px;
+    }
+}
     </style>
 </head>
 <body>
@@ -667,7 +701,7 @@
                    <img src="academy.jpg" alt="" class="lohoimg">
                 </div>
                 <div class="header-text">
-                    <h1>Oxbridge Academy</h1>
+                    <h1 class="animated-title" id="animatedTitle"></h1>
                     <p>Results Portal - Check Your Examination Results</p>
                 </div>
             </div>
@@ -1537,9 +1571,69 @@
 
         // Initialize the dropdown
         initializeDropdown();
+        // Animated title typing and deleting effect
+function typeWriter(element, text, speed = 100, pause = 2000) {
+    let i = 0;
+    let isDeleting = false;
+    let currentText = '';
+    
+    function type() {
+        if (!isDeleting && i < text.length) {
+            // Typing phase
+            currentText = text.substring(0, i + 1);
+            element.innerHTML = currentText + '<span class="cursor">|</span>';
+            i++;
+            setTimeout(type, speed);
+        } else if (!isDeleting && i === text.length) {
+            // Pause at the end
+            setTimeout(() => {
+                isDeleting = true;
+                type();
+            }, pause);
+        } else if (isDeleting && i > 0) {
+            // Deleting phase
+            currentText = text.substring(0, i - 1);
+            element.innerHTML = currentText + '<span class="cursor">|</span>';
+            i--;
+            setTimeout(type, speed / 2); // Faster deleting
+        } else if (isDeleting && i === 0) {
+            // Restart the cycle
+            isDeleting = false;
+            setTimeout(type, 500);
+        }
+    }
+    type();
+}
+
+// Add cursor blinking animation to CSS
+const style = document.createElement('style');
+style.textContent = `
+    .cursor {
+        animation: blink 1s infinite;
+        margin-left: 2px;
+    }
+    
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+`;
+document.head.appendChild(style);
+
+// Initialize animated title
+const animatedTitle = document.getElementById('animatedTitle');
+const titleText = "Oxbridge Academy";
+
+// Start typing animation when page loads
+window.addEventListener('load', function() {
+    setTimeout(() => {
+        typeWriter(animatedTitle, titleText, 150, 2000);
+    }, 500);
+});
     </script>
 </body>
 </html>
+
 
 
 
